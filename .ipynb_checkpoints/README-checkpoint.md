@@ -3,25 +3,37 @@
 ### [Assignment](assignment.md)
 
 ## Project/Goals
-(fill in your description and goals here)
+The goal of this project is to predict if a customer will get approved for a loan based on some speific informations
 
 ## Hypothesis
-(fill in your hypothesis about which subset of applicants will be most likely to have their loan approved, and why. Give some examples of how you will test this hypothesis)
+I hypothesized that applicants with high income and few dependents will get approved for a loan
 
 ## EDA 
-(fill in what you discovered in your exploration of the dataset)
+The higher your income the more likely you will get approved for a loan
+Applicants with fewer dependents got approved more
+In general, applicants who are graduates had thier loans approved more.
 
 
 ## Process
-(fill in what you did during EDA, cleaning, feature engineering, modeling, deployment, testing)
-### (your step 1)
-### (your step 2)
+
+### Step 1
+I analyzed variables to see how they relate with each other 
+
+### Step 2
+I then replaced with null values
+
+### Step 3
+DecisionTreeClassifier was used for creating the model
+
+### Step 4
+Deployed model to cloud using python
 
 ## Results/Demo
-(fill in your model's performance, details about the API you created, and (optional) a link to an live demo)
+The model accuracy score was 76%. It was able to accurately predict the first row of the dataset
 
 ## Challanges 
-(discuss challenges you faced in the project)
+Converting my categorical variables. I used labelEncoder which worked fine in training the model but after deploying and trying to read the model, it wouldn't take in categorical data so I had to fix that. 
+There also wasn't enough time allocated for this project. I had difficulty deploying to AWS as well.
 
 ## Future Goals
-(what would you do if you had more time? are there any potential issues/biases with your model/use case?)
+When I run my model and enter the values for my json_data, I couldn't get the result to print as 'Y' for loan approved and 'N' for loan not approved. or 1 for loan approved and 0 for loan not approved. i would like to go back and try and fix this

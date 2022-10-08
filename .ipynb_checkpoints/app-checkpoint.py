@@ -4,20 +4,29 @@ from flask import Flask, jsonify, request
 from flask_restful import Resource, Api, reqparse
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler, LabelEncoder
 import pickle
 app = Flask(__name__)
 api = Api(app)
-df = pd.read_csv("/Users/perpetualokafor/Downloads/mini-project-4/data/data1.csv") 
+ 
 model = pickle.load( open( "model.pkl", "rb" ))
+
+class RawFeats:
+    def __init__(self, feats):
+        self.feats = feats
+
+    def fit(self, X, y=None):
+        pass
+
+
+    def transform(self, X, y=None):
+        return X[self.feats]
+
+    def fit_transform(self, X, y=None):
+        self.fit(X)
+        return self.transform(X)
 
 #Now, we need to create an endpoint where we can communicate with our ML model. 
 #This time, we are going to use POST request.
-
-LE = LabelEncoder()
-encode_cols = ['Gender','Married','Education','Self_Employed','Property_Area']
-for col in encode_cols:
-    df[col] = LE.fit_transform(df[col])
 
 class Scoring(Resource):
     def post(self):
@@ -32,4 +41,3 @@ class Scoring(Resource):
 api.add_resource(Scoring, '/scoring')
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
-  
